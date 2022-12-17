@@ -1,0 +1,12 @@
+﻿<Project>
+    <Target Name="DownloadNativeLibs" Condition="!Exists('$(MSBuildProjectDirectory)\runtimes\$(Rid)\native')">
+        <MakeDir Directories="$(MSBuildProjectDirectory)\runtimes\$(Rid)\native" />
+        <DownloadFile
+                DestinationFolder="$(MSBuildProjectDirectory)\runtimes\$(Rid)" 
+                SourceUrl="$(LibUrl)" 
+                DestinationFileName="native.zip"/>
+        <Unzip DestinationFolder="$(MSBuildProjectDirectory)\runtimes\$(Rid)\native" 
+               SourceFiles="$(MSBuildProjectDirectory)\runtimes\$(Rid)\native.zip"/>
+        <Delete Files="$(MSBuildProjectDirectory)\runtimes\$(Rid)\native.zip"/>
+    </Target>
+</Project>
